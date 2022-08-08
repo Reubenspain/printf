@@ -1,7 +1,7 @@
 #include <stdarg.h>
 #include "main.h"
 #include <stdio.h>
-​
+
 /**
  * _puts - prints a string
  * _printf - prints anything
@@ -9,7 +9,7 @@
  *
  * Return: the number of characters printed
  */
-​
+
 int _puts(char *str)
 {
 	int i = 0;
@@ -20,14 +20,14 @@ int _puts(char *str)
 	}
 	return (i);
 }
-​
+
 int _printf(const char *format, ...){
   int count = 0;
   int i = 0;
-​
+
   va_list data; 
   va_start(data, format);
-​
+
   while(format[i]) 
   {
 	 while(format[i] == '%')
@@ -41,15 +41,19 @@ int _printf(const char *format, ...){
 			  case 's':
 				  count += _putchar(_puts(va_arg(data, char *)));
 				  i += 2;  
-				  break; 
+				  break;
+ 			  case '%':
+                                   _putchar('%');
+                                   count++;
+                                   i += 2;
+                                   break; 
                           default:
                                  _putchar(format[i]);
 				 _putchar(format[i]);
 			 	i += 2;
                  }
           }
-​
-​
+
   if(format[i])
 	{
 		_putchar(format[i]);
@@ -57,6 +61,6 @@ int _printf(const char *format, ...){
 	}
 	i++;
   } 
-​
+
   return(count);
 }
